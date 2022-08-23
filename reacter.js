@@ -1,7 +1,7 @@
 import { webpack } from '@cumcord/modules';
 import {log} from '@cumcord/utils/logger';
 const { addReaction } = webpack.findByProps('addReaction');
-const { getEmojis } = webpack.findByProps('getGuildEmoji').getGuilds();
+const { getGuildEmoji } = webpack.findByProps('getGuildEmoji');
 
 const removeCommand = cumcord.commands.addCommand({
     name: "react",
@@ -37,7 +37,7 @@ const removeCommand = cumcord.commands.addCommand({
 
 export default {
     onLoad() {
-        emojis = getEmojis();
+        emojis = getGuildEmoji();
         log(emojis);
     },
     onUnload() {},
