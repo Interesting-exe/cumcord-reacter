@@ -20,8 +20,8 @@ const removeCommand = cumcord.commands.addCommand({
     ],
     
     handler: (ctx, send) => {
-        emojis = Object.values(getGuildEmoji.getGuilds()).flatMap(g => g._emojis);
-        send(emojis)
+        // emojis = Object.values(getGuildEmoji.getGuilds()).flatMap(g => g._emojis);
+        // send(emojis)
         // for (let emoji of emojis)
         // {
         //     if(emoji.name == ctx.args.eName)
@@ -37,7 +37,7 @@ const removeCommand = cumcord.commands.addCommand({
 
 export default {
     onLoad() {
-        emojis = Object.values(getGuildEmoji.getGuilds()).flatMap(g => g._emojis);
+        emojis = getGuildEmoji.getGuilds();
         log(emojis);
     },
     onUnload() {},
