@@ -37,7 +37,7 @@ const removeCommand = cumcord.commands.addCommand({
 
 export default {
     onLoad() {
-        emojis = getGuildEmoji();
+        emojis = getGuildEmoji;
         log(emojis);
     },
     onUnload() {},
