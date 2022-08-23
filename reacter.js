@@ -49,6 +49,6 @@ const removeCommand = cumcord.commands.addCommand({
 
 
 export default {
-    onLoad() {},
+    onLoad() { log("[Reacter] Reacter loaded")},
     onUnload() {},
 };
