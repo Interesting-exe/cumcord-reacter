@@ -38,9 +38,18 @@ const removeCommand = cumcord.commands.addCommand({
 
 export default {
     onLoad() {
-        let emojis = [];
+        let result = [];
         let servers = Object.values(getGuilds()).map(g => g.id);
-        log("first server emojis: " +getGuildEmoji(servers[0])[0].id)
+        for (let server of servers)
+        {
+            let emojis = getGuildEmoji(server);
+            for (let emoji of emojis)
+            {
+                if(emoji.name == "troll")
+                    result.push(emoji);
+            }
+        }
+        log("all troll emojis: " +result)
     },
     onUnload() {},
 };
