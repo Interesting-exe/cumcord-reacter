@@ -3,6 +3,7 @@ import {log} from '@cumcord/utils/logger';
 const { addReaction } = findByProps('addReaction');
 const { getGuildEmoji } = findByProps("getGuildEmoji");
 const { getGuilds } = findByProps("getGuilds");
+const { isNitro } = findByProps("canUseEmojisEverywhere"); 
 
 const removeCommand = cumcord.commands.addCommand({
     name: "react",
@@ -21,23 +22,7 @@ const removeCommand = cumcord.commands.addCommand({
     ],
     
     handler: (ctx, send) => {
-        // emojis = Object.values(getGuildEmoji.getGuilds()).flatMap(g => g._emojis);
-        // send(emojis)
-        // for (let emoji of emojis)
-        // {
-        //     if(emoji.name == ctx.args.eName)
-        //     {
-        //         addReaction(ctx.channel, ctx.args.msgId, emoji)
-        //     }
-        // }
-        return
-    }
-})
 
-
-
-export default {
-    onLoad() {
         let result = [];
         let servers = Object.values(getGuilds()).map(g => g.id);
         for (let server of servers)
@@ -49,7 +34,21 @@ export default {
                     result.push(emoji);
             }
         }
-        log("all troll emojis: " +Object.values(result).map(g => g.id));
-    },
+        for (result in results)
+        {
+            if( !isNitro && result.animated)
+                continue;
+            if( isNitro || result.guildId == ctx.guild)
+                addReaction(ctx.channel, ctx.args.msgId, result);
+        }
+        
+        return
+    }
+})
+
+
+
+export default {
+    onLoad() {},
     onUnload() {},
 };
