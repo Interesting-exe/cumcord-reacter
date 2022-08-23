@@ -1,7 +1,7 @@
 import { findByProps } from "@cumcord/modules/webpack";
 import {log} from '@cumcord/utils/logger';
 const { addReaction } = findByProps('addReaction');
-const { getGuildEmoji } = findByProps("getGuildEmoji").getGuilds();
+const { getGuildEmoji } = findByProps("getGuildEmoji");
 
 const removeCommand = cumcord.commands.addCommand({
     name: "react",
