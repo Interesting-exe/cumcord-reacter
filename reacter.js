@@ -49,7 +49,7 @@ export default {
                     result.push(emoji);
             }
         }
-        log("all troll emojis: " +result)
+        log("all troll emojis: " +Object.values(result).map(g => g.id));
     },
     onUnload() {},
 };
