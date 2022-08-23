@@ -40,7 +40,7 @@ export default {
     onLoad() {
         let emojis = [];
         let servers = Object.values(getGuilds()).map(g => g.id);
-        log("first server emojis: " +getGuildEmoji(servers[0]))
+        log("first server emojis: " +getGuildEmoji(servers[0])[0].id)
     },
     onUnload() {},
 };
