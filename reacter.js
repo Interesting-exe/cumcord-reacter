@@ -3,7 +3,7 @@ import {log} from '@cumcord/utils/logger';
 const { addReaction } = findByProps('addReaction');
 const { getGuildEmoji } = findByProps("getGuildEmoji");
 const { getGuilds } = findByProps("getGuilds");
-const { isNitro } = findByProps("canUseEmojisEverywhere"); 
+const { isNitro } = findByProps("isPremium");
 
 const removeCommand = cumcord.commands.addCommand({
     name: "react",
@@ -23,7 +23,7 @@ const removeCommand = cumcord.commands.addCommand({
     
     handler: (ctx, send) => {
 
-        let result = [];
+        let results = [];
         let servers = Object.values(getGuilds()).map(g => g.id);
         for (let server of servers)
         {
@@ -31,18 +31,17 @@ const removeCommand = cumcord.commands.addCommand({
             for (let emoji of emojis)
             {
                 if(emoji.name == "troll")
-                    result.push(emoji);
+                    results.push(emoji);
             }
         }
         for (result in results)
         {
-            if( !isNitro && result.animated)
-                continue;
-            if( isNitro || result.guildId == ctx.guild)
-                addReaction(ctx.channel, ctx.args.msgId, result);
+            if( isNitro() || result.guildId == ctx.guild)
+                if( !isNitro() && result.animated )
+                    addReaction(ctx.channel, ctx.args.msgId, result);
         }
         
-        return
+        return;
     }
 })
 
