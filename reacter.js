@@ -39,7 +39,8 @@ const removeCommand = cumcord.commands.addCommand({
         results = Object.values(results);
         for (let result in results)
         {
-            addReaction(ctx.channel.id, ctx.args.msgId, result);
+            // addReaction(ctx.channel.id, ctx.args.msgId, result);
+            log(result);
         }
         
 
