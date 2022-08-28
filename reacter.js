@@ -24,7 +24,7 @@ const removeCommand = cumcord.commands.addCommand({
     handler: (ctx, send) => {
 
         let results = [];
-        let servers = getGuilds().map(g => g.id);
+        let servers = getGuilds();
         // for (let server of servers)
         // {
         //     let emojis = getGuildEmoji(server);
