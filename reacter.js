@@ -25,28 +25,23 @@ const removeCommand = cumcord.commands.addCommand({
 
         let results = [];
         let servers = Object.values(getGuilds()).flatMap(g => g.id);
-        // for (let server of servers)
-        // {
-        //     let emojis = getGuildEmoji(server);
-        //     for (let emoji of emojis)
-        //     {
-        //         if(emoji.name == "troll")
-        //         {
-        //             results.push(emoji);
-        //         }
-        //     }
-        // }
-        // for (let result in results)
-        // {
-        //     if( isNitro || result.guildId == ctx.guild.id)
-        //         if( !isNitro && result.animated )
-        //         {
-        //             addReaction(ctx.channel, ctx.args.msgId, {name: result.name, id: result.id, animated: result.animated});
-        //             log(ctx.channel, ctx.args.msgId, {name: result.name, id: result.id, animated: result.animated})
-        //         }
-        // }
-        log(isNitro());
-        log(ctx.guild);
+        for (let server of servers)
+        {
+            let emojis = getGuildEmoji(server);
+            for (let emoji of emojis)
+            {
+                if(emoji.name == "troll")
+                {
+                    results.push(emoji);
+                }
+            }
+        }
+        for (let result in results)
+        {
+            if( isNitro || result.guildId == ctx.guild.id)
+                if( !isNitro && result.animated )
+                    addReaction(ctx.channel, ctx.args.msgId, {name: result.name, id: result.id, animated: result.animated});
+        }
         return;
     }
 })
