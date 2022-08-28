@@ -12,12 +12,12 @@ const removeCommand = cumcord.commands.addCommand({
         {
             name: "msgId",
             type: "string",
-            required: false
+            required: true
         },
         {
             name: "eName",
             type: "string",
-            required: false
+            required: true
         }
     ],
     
@@ -38,7 +38,7 @@ const removeCommand = cumcord.commands.addCommand({
         }
         for (let result in results)
         {
-            addReaction(ctx.channel, ctx.args.msgId, {name: result.name, id: result.id, animated: result.animated});
+            addReaction(ctx.channel.id, ctx.args.msgId, emoji);
         }
         log(ctx.channel)
         return;
