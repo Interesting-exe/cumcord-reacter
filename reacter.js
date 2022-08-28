@@ -3,7 +3,8 @@ import {log} from '@cumcord/utils/logger';
 const { addReaction } = findByProps('addReaction');
 const { getGuildEmoji } = findByProps("getGuildEmoji");
 const { getGuilds } = findByProps("getGuilds");
-const { isNitro } = findByProps("isPremium");
+const { getMessage } = findByProps("getMessages");
+
 
 const removeCommand = cumcord.commands.addCommand({
     name: "react",
@@ -23,26 +24,33 @@ const removeCommand = cumcord.commands.addCommand({
     
     handler: (ctx, send) => {
 
-        let results = [];
-        let servers = Object.values(getGuilds()).flatMap(g => g.id);
-        for (let server of servers)
+        const msg = ctx.args.msgId && getMessage(ctx.args.channel.id, ctx.args.msgId)
+        if(!msg)
         {
-            let emojis = getGuildEmoji(server);
-            for (let emoji of emojis)
-            {
-                if(emoji.name == "troll")
-                {
-                    results.push(emoji);
-                }
-            }
+            send("Message not found")
+            return
         }
-        for (let result in results)
-        {
-            addReaction(ctx.channel.id, ctx.args.msgId, results[result]);
-            await new Promise(resolve => setTimeout(resolve, 500));
-        }
-        
 
+        // let results = [];
+        // let servers = Object.values(getGuilds()).flatMap(g => g.id);
+        // for (let server of servers)
+        // {
+        //     let emojis = getGuildEmoji(server);
+        //     for (let emoji of emojis)
+        //     {
+        //         if(emoji.name == ctx.args.eName)
+        //         {
+        //             results.push(emoji);
+        //         }
+        //     }
+        // }
+        // for (let result in results)
+        // {
+        //     addReaction(ctx.channel.id, ctx.args.msgId, results[result]);
+        //     await new Promise(resolve => setTimeout(resolve, 500));
+        // }
+        
+        log(msg);
         return;
     }
 })
