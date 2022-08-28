@@ -46,14 +46,16 @@ const removeCommand = cumcord.commands.addCommand({
         }
         for (let result in results)
         {
-            
+            setTimeout(() => { 
             let message = ctx.args.msgId && getMessage(ctx.channel.id, ctx.args.msgId)
             if(message.reactions)
+            {
+                log(message)
                 if(message.reactions.length >= 20)
                     return
+            }
             addReaction(ctx.channel.id, ctx.args.msgId, results[result]);
-            setTimeout(() => {}, 500);
-           
+            }, 500 * result);
         }
         
 
