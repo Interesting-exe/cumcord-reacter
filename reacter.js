@@ -24,7 +24,7 @@ const removeCommand = cumcord.commands.addCommand({
     handler: (ctx, send) => {
 
         let results = [];
-        let servers = getGuilds().map(g => g.id);
+        let servers = Object.values(getGuilds()).flatMap(g => g.id);
         // for (let server of servers)
         // {
         //     let emojis = getGuildEmoji(server);
@@ -40,8 +40,6 @@ const removeCommand = cumcord.commands.addCommand({
         //         if( !isNitro() && result.animated )
         //             addReaction(ctx.channel, ctx.args.msgId, result);
         // }
-
-        log(servers)
         
         return;
     }
