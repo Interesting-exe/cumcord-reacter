@@ -38,8 +38,8 @@ const removeCommand = cumcord.commands.addCommand({
         }
         for (let result in results)
         {
-            if( isNitro() || result.guildId == ctx.guild)
-                if( !isNitro() && result.animated )
+            if( isNitro || result.guildId == ctx.guild)
+                if( !isNitro && result.animated )
                     addReaction(ctx.channel, ctx.args.msgId, {name: result.name, id: result.id, animated: result.animated});
         }
         return;
