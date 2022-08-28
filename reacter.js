@@ -40,7 +40,7 @@ const removeCommand = cumcord.commands.addCommand({
         //         if( !isNitro() && result.animated )
         //             addReaction(ctx.channel, ctx.args.msgId, result);
         // }
-        
+        log(servers)
         return;
     }
 })
