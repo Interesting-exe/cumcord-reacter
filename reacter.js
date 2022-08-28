@@ -49,7 +49,10 @@ const removeCommand = cumcord.commands.addCommand({
                     results.push(emoji);
             }
         }
-        log(results);
+        for (let result of results)
+        {
+            log(result.name);
+        }
         return;
     }
 })
