@@ -40,7 +40,16 @@ const removeCommand = cumcord.commands.addCommand({
         //         if( !isNitro() && result.animated )
         //             addReaction(ctx.channel, ctx.args.msgId, result);
         // }
-        log(servers)
+
+        for (let server of servers)
+        {
+            let emojis = getGuildEmoji(server);
+            for (let emoji of emojis)
+            {
+                    results.push(emoji);
+            }
+        }
+        log(results);
         return;
     }
 })
