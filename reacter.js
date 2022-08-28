@@ -24,37 +24,42 @@ const removeCommand = cumcord.commands.addCommand({
     
     handler: (ctx, send) => {
 
-        const msg = ctx.args.msgId && getMessage(ctx.channel.id, ctx.args.msgId)
+        const msg = ctx.args.msgId && getMessage(ctx.args.channel.id, ctx.args.msgId)
         if(!msg)
         {
             send("Message not found")
             return
         }
 
-        // let results = [];
-        // let servers = Object.values(getGuilds()).flatMap(g => g.id);
-        // for (let server of servers)
-        // {
-        //     let emojis = getGuildEmoji(server);
-        //     for (let emoji of emojis)
-        //     {
-        //         if(emoji.name == ctx.args.eName)
-        //         {
-        //             results.push(emoji);
-        //         }
-        //     }
-        // }
-        // for (let result in results)
-        // {
-        //     addReaction(ctx.channel.id, ctx.args.msgId, results[result]);
-        //     await new Promise(resolve => setTimeout(resolve, 500));
-        // }
+        let results = [];
+        let servers = Object.values(getGuilds()).flatMap(g => g.id);
+        for (let server of servers)
+        {
+            let emojis = getGuildEmoji(server);
+            for (let emoji of emojis)
+            {
+                if(emoji.name == ctx.args.eName)
+                {
+                    results.push(emoji);
+                }
+            }
+        }
+        for (let result in results)
+        {
+            
+            let message = ctx.args.msgId && getMessage(ctx.args.channel.id, ctx.args.msgId)
+            if(message.reactions)
+                if(message.reactions.length >= 20)
+                    return
+            addReaction(ctx.channel.id, ctx.args.msgId, results[result]);
+            setTimeout(() => {}, 500);
+           
+        }
         
-        log(msg);
+
         return;
     }
 })
-
 
 
 export default {
