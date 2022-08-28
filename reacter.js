@@ -24,22 +24,24 @@ const removeCommand = cumcord.commands.addCommand({
     handler: (ctx, send) => {
 
         let results = [];
-        let servers = Object.values(getGuilds()).map(g => g.id);
-        for (let server of servers)
-        {
-            let emojis = getGuildEmoji(server);
-            for (let emoji of emojis)
-            {
-                if(emoji.name == "troll")
-                    results.push(emoji);
-            }
-        }
-        for (result in results)
-        {
-            if( isNitro() || result.guildId == ctx.guild)
-                if( !isNitro() && result.animated )
-                    addReaction(ctx.channel, ctx.args.msgId, result);
-        }
+        let servers = getGuilds().map(g => g.id);
+        // for (let server of servers)
+        // {
+        //     let emojis = getGuildEmoji(server);
+        //     for (let emoji of emojis)
+        //     {
+        //         if(emoji.name == "troll")
+        //             results.push(emoji);
+        //     }
+        // }
+        // for (result in results)
+        // {
+        //     if( isNitro() || result.guildId == ctx.guild)
+        //         if( !isNitro() && result.animated )
+        //             addReaction(ctx.channel, ctx.args.msgId, result);
+        // }
+
+        log(servers)
         
         return;
     }
