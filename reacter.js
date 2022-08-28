@@ -36,12 +36,13 @@ const removeCommand = cumcord.commands.addCommand({
                 }
             }
         }
-        // for (let result in results)
-        // {
-        //     addReaction(ctx.channel.id, ctx.args.msgId, {name: result.name, id: result.id, animated: result.animated});
-        // }
         results = Object.values(results);
-        log(results)
+        for (let result in results)
+        {
+            addReaction(ctx.channel.id, ctx.args.msgId, {name: result.name, id: result.id, animated: result.animated});
+        }
+        
+
         return;
     }
 })
