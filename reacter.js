@@ -24,7 +24,7 @@ const removeCommand = cumcord.commands.addCommand({
     
     handler: (ctx, send) => {
 
-        const msg = ctx.args.msgId && getMessage(ctx.args.channel.id, ctx.args.msgId)
+        const msg = ctx.args.msgId && getMessage(ctx.channel.id, ctx.args.msgId)
         if(!msg)
         {
             send("Message not found")
