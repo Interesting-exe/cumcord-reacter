@@ -11,12 +11,14 @@ const removeCommand = cumcord.commands.addCommand({
     description: "cums on a message with a reaction of your choice",
     args: [
         {
-            name: "msgId",
+            name: "msg",
+            description: "the message id",
             type: "string",
             required: true
         },
         {
-            name: "eName",
+            name: "emoji",
+            description: "the emoji to react with",
             type: "string",
             required: true
         }
@@ -24,7 +26,9 @@ const removeCommand = cumcord.commands.addCommand({
     
     handler: (ctx, send) => {
 
-        const msg = ctx.args.msgId && getMessage(ctx.channel.id, ctx.args.msgId)
+
+
+        const msg = ctx.args.msg && getMessage(ctx.channel.id, ctx.args.msg)
         if(!msg)
         {
             send("Message not found")
@@ -38,7 +42,7 @@ const removeCommand = cumcord.commands.addCommand({
             let emojis = getGuildEmoji(server);
             for (let emoji of emojis)
             {
-                if(emoji.name == ctx.args.eName)
+                if(emoji.name == ctx.args.emoji)
                 {
                     results.push(emoji);
                 }
@@ -47,14 +51,14 @@ const removeCommand = cumcord.commands.addCommand({
         for (let result in results)
         {
             setTimeout(() => { 
-            let message = ctx.args.msgId && getMessage(ctx.channel.id, ctx.args.msgId)
+            let message = ctx.args.msg && getMessage(ctx.channel.id, ctx.args.msg)
             if(message.reactions)
             {
                 log(message)
                 if(message.reactions.length >= 20)
                     return
             }
-            addReaction(ctx.channel.id, ctx.args.msgId, results[result]);
+            addReaction(ctx.channel.id, ctx.args.msg, results[result]);
             }, 500 * result);
         }
         
