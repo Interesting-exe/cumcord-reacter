@@ -71,7 +71,7 @@ const removeCommand = cumcord.commands.addCommand({
                     return
             }
             addReaction(ctx.channel.id, ctx.args.msg, results[result]);
-            }, 500 * result);
+            }, 250 * result);
         }
         
 
