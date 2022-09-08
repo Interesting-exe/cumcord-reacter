@@ -25,9 +25,6 @@ const removeCommand = cumcord.commands.addCommand({
     ],
     
     handler: (ctx, send) => {
-
-
-
         const msg = ctx.args.msg && getMessage(ctx.channel.id, ctx.args.msg)
         if(!msg)
         {
@@ -42,6 +39,21 @@ const removeCommand = cumcord.commands.addCommand({
             let emojis = getGuildEmoji(server);
             for (let emoji of emojis)
             {
+                if(ctx.args.emoji.startsWith('*') && ctx.args.emoji.endsWith('*'))
+                {
+                    if(emoji.name.includes(ctx.args.emoji.slice(1, -1)))
+                        results.push(emoji);
+                }
+                else if(ctx.args.emoji.startsWith('*'))
+                {
+                    if(emoji.name.endsWith(ctx.args.emoji.slice(1)))
+                        results.push(emoji);
+                }
+                else if(ctx.args.emoji.endsWith('*'))
+                {
+                    if(emoji.name.startsWith(ctx.args.emoji.slice(0, -1)))
+                        results.push(emoji);
+                }
                 if(emoji.name == ctx.args.emoji)
                 {
                     results.push(emoji);
